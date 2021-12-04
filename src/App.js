@@ -1,15 +1,21 @@
  /* eslint-disable */
 import logo from './logo.svg';
 import jin from './jin.png';
-import $ from 'jquery';
+import { Modal, Button, Form } from "react-bootstrap";
+import React, { useState } from 'react';
+
 import './App.css';
+import { data } from 'jquery';
+
 
 function App() {
+  const [show, setShow] = useState(false);
+
+  const handleShow = (id) => setShow(!show)
+  
   return (
-    <div className="App">
-      <script>
-      console.log("start");
-      </script>
+    <>
+    <div className="App" >
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -25,14 +31,12 @@ function App() {
       <div className="container px-4">
         <div className="row gx-5">
           <div className="col">
-          <button type="button" datatoggle="modal" datatarget="#exampleModal">
-            <div className="card" >
+            <div className="card" onClick={handleShow("kidus")} >
               <img src={jin} className="card-img-top" alt="jin" />
               <div className="card-body">
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
-            </button>
           </div>
           <div className="col">
             <div className="card" >
@@ -53,26 +57,18 @@ function App() {
           
         </div>
       </div>
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" arialabelledby="exampleModalLabel" ariahidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" className="close" datadismiss="modal" arialabel="Close">
-                <span ariahidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              ...
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" datadismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+    <Modal show={show}>
+        <Modal.Header closeButton  onClick={handleShow}>
+          <Modal.Title>Login Form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="data">
+            
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }
 
